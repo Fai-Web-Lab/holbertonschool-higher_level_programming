@@ -33,4 +33,4 @@ Both names as numbers:
 
 Empty strings (valid):
     >>> say_my_name("", "")
-    My name is
+    My name is  
