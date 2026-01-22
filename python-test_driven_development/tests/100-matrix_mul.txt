@@ -1,22 +1,76 @@
 The ``100-matrix_mul`` module
 ==============================
 
+Using ``matrix_mul``
+--------------------
     >>> matrix_mul = __import__('100-matrix_mul').matrix_mul
 
-Normal Case:
+Normal cases:
     >>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
     [[7, 10], [15, 22]]
 
     >>> matrix_mul([[1, 2]], [[3, 4], [5, 6]])
     [[13, 16]]
 
-Invalid Type (not a list):
+    >>> matrix_mul([[1.5, 2.5], [3.5, 4.5]], [[1, 0], [0, 1]])
+    [[1.5, 2.5], [3.5, 4.5]]
+
+Validation - Must be a list:
     >>> matrix_mul(89, [[1, 2]])
     Traceback (most recent call last):
         ...
     TypeError: m_a must be a list
 
-Compatibility Error:
+    >>> matrix_mul([[1, 2]], "not a list")
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b must be a list
+
+Validation - Must be a list of lists:
+    >>> matrix_mul([1, 2], [[1, 2]])
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a must be a list of lists
+
+    >>> matrix_mul([[1, 2]], [1, 2])
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b must be a list of lists
+
+Validation - Can't be empty:
+    >>> matrix_mul([], [[1, 2]])
+    Traceback (most recent call last):
+        ...
+    ValueError: m_a can't be empty
+
+    >>> matrix_mul([[1, 2]], [[]])
+    Traceback (most recent call last):
+        ...
+    ValueError: m_b can't be empty
+
+Validation - Must contain only integers or floats:
+    >>> matrix_mul([[1, "2"]], [[1, 2]])
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a should contain only integers or floats
+
+    >>> matrix_mul([[1, 2]], [[1, None]])
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b should contain only integers or floats
+
+Validation - Must be rectangular (same row size):
+    >>> matrix_mul([[1, 2], [3]], [[1, 2], [3, 4]])
+    Traceback (most recent call last):
+        ...
+    TypeError: each row of m_a must be of the same size
+
+    >>> matrix_mul([[1, 2]], [[1, 2], [3]])
+    Traceback (most recent call last):
+        ...
+    TypeError: each row of m_b must be of the same size
+
+Validation - Multiplication compatibility:
     >>> matrix_mul([[1, 2], [3, 4]], [[1, 2]])
     Traceback (most recent call last):
         ...
