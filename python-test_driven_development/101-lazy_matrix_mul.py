@@ -7,6 +7,11 @@ import numpy as np
 
 def lazy_matrix_mul(m_a, m_b):
     """
-    Multiplies two matrices using NumPy matrix multiplication
+    Multiplies two matrices using NumPy
     """
-    return np.matrix(m_a) * np.matrix(m_b)
+    try:
+        return np.matrix(m_a) * np.matrix(m_b)
+    except Exception:
+        if isinstance(m_a, str) or isinstance(m_b, str):
+            raise TypeError("Scalar operands are not allowed, use '*' instead")
+        raise
