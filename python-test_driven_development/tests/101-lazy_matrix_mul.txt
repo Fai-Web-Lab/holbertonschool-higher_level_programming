@@ -1,26 +1,30 @@
 The ``101-lazy_matrix_mul`` module
 ==================================
 
+Using ``lazy_matrix_mul``
+-------------------------
     >>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
 
-Normal Case:
+Normal cases:
     >>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
     array([[ 7, 10],
            [15, 22]])
 
-Scalar case (ma is string):
+    >>> lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]])
+    array([[13, 16]])
+
+Scalar operands (ma or mb is a string):
     >>> lazy_matrix_mul("Holberton", [[5, 6], [7, 8]])
     Traceback (most recent call last):
         ...
     TypeError: Scalar operands are not allowed, use '*' instead
 
-Scalar case (mb is string):
     >>> lazy_matrix_mul([[5, 6], [7, 8]], "Holberton")
     Traceback (most recent call last):
         ...
     TypeError: Scalar operands are not allowed, use '*' instead
 
-Empty matrix cases:
+Empty matrices:
     >>> lazy_matrix_mul([[]], [[5, 6], [7, 8]])
     Traceback (most recent call last):
         ...
@@ -31,7 +35,7 @@ Empty matrix cases:
         ...
     ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n,k),(k,m)->(n,m) (size 0 is different from 2)
 
-Invalid data type (String inside list):
+Invalid data types (String inside list):
     >>> lazy_matrix_mul([[5, "6"], [7, 8]], [[5, 6], [7, 8]])
     Traceback (most recent call last):
         ...
@@ -53,7 +57,7 @@ Inconsistent row sizes (Not a rectangle):
         ...
     ValueError: setting an array element with a sequence.
 
-Dimension mismatch:
+Incompatible dimensions:
     >>> lazy_matrix_mul([[1, 2, 3], [3, 4, 5]], [[1, 2], [3, 4]])
     Traceback (most recent call last):
         ...
