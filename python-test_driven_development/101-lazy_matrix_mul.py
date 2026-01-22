@@ -7,6 +7,6 @@ import numpy as np
 
 def lazy_matrix_mul(m_a, m_b):
     """
-    Multiplies two matrices using NumPy
+    Multiplies two matrices using NumPy matrix multiplication
     """
-    return np.matmul(m_a, m_b)
+    return np.matrix(m_a) * np.matrix(m_b)
