@@ -1,34 +1,25 @@
 #!/usr/bin/python3
 """
-This module defines a Square class with size, position, and string representation.
+Defines a Square class
 """
 
 
 class Square:
-    """
-    Defines a square by size and position.
-    Supports area calculation, printing, and string conversion.
-    """
+    """Represents a square"""
 
     def __init__(self, size=0, position=(0, 0)):
-        """
-        Initializes the square.
-
-        Args:
-            size (int): The side length of the square.
-            position (tuple): The (x, y) coordinates of the square.
-        """
+        """Initialize square with size and position"""
         self.size = size
         self.position = position
 
     @property
     def size(self):
-        """Retrieves the size attribute."""
+        """Retrieve the size"""
         return self.__size
 
     @size.setter
     def size(self, value):
-        """Sets the size with type and value validation."""
+        """Set the size with validation"""
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
         if value < 0:
@@ -37,41 +28,40 @@ class Square:
 
     @property
     def position(self):
-        """Retrieves the position attribute."""
+        """Retrieve the position"""
         return self.__position
 
     @position.setter
     def position(self, value):
-        """Sets the position with tuple validation."""
-        if (not isinstance(value, tuple) or len(value) != 2 or
-                not all(isinstance(num, int) for num in value) or
-                not all(num >= 0 for num in value)):
-            raise TypeError("position must be a tuple of 2 positive integers")
+        """Set the position with validation"""
+        if (
+            not isinstance(value, tuple)
+            or len(value) != 2
+            or not all(isinstance(i, int) for i in value)
+            or not all(i >= 0 for i in value)
+        ):
+            raise TypeError("position must be a tuple of 2 positive integer")
         self.__position = value
 
     def area(self):
-        """Calculates the area of the square."""
-        return self.__size ** 2
-
-    def __str__(self):
-        """
-        Defines the string representation of the Square instance.
-        Returns the square as a string of # characters with correct positioning.
-        """
-        result = ""
-        if self.__size == 0:
-            return result
-
-        for _ in range(self.__position[1]):
-            result += "\n"
-
-        for i in range(self.__size):
-            result += " " * self.__position[0]
-            result += "#" * self.__size
-            if i < self.__size - 1:
-                result += "\n"
-        return result
+        """Return the area of the square"""
+        return self.__size * self.__size
 
     def my_print(self):
-        """Prints the square using its string representation."""
+        """Print the square using #"""
         print(self.__str__())
+
+    def __str__(self):
+        """Return the square representation as a string"""
+        if self.__size == 0:
+            return ""
+
+        lines = []
+
+        for _ in range(self.__position[1]):
+            lines.append("")
+
+        for _ in range(self.__size):
+            lines.append(" " * self.__position[0] + "#" * self.__size)
+
+        return "\n".join(lines)
