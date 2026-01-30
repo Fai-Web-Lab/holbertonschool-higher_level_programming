@@ -9,7 +9,6 @@ First, import the class:
 ------------------------------------
 1. Testing area() method
 ------------------------------------
-Should raise an Exception because it's not yet implemented in the base class:
 >>> bg.area()
 Traceback (most recent call last):
     ...
