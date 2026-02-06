@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """Module that contains a function to write a string to a text file."""
 
 
