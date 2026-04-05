@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 class LockedClass:
     """
     A class that prevents dynamic attribute creation,
